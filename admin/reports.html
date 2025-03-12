@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bakery Admin - Business Reports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#854d0e",
+              secondary: "#fef3c7",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <span class="text-2xl font-['Pacifico'] text-primary">logo</span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="dashboard.html" class="text-primary border-b-2 border-primary"
+              >Dashboard</a
+            >
+            <a
+              href="orders.html"
+              data-readdy="true"
+              class="text-gray-700 hover:text-primary"
+              >Orders</a
+            >
+            <a href="products.html" class="text-gray-700 hover:text-primary"
+              >Products</a
+            >
+            <a href="customers.html" class="text-gray-700 hover:text-primary"
+              >Customers</a
+            >
+            <a href="reports.html" class="text-gray-700 hover:text-primary"
+              >Reports</a
+            >
+          </div>
+          <div class="flex items-center space-x-4">
+            <button class="w-10 h-10 flex items-center justify-center">
+              <i class="ri-notification-3-line text-gray-600"></i>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center">
+              <i class="ri-user-line text-gray-600"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-8">
+          <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-semibold text-gray-900">
+              Business Reports & Analytics
+            </h1>
+            <div class="flex space-x-4">
+              <div class="relative">
+                <select
+                  id="dateRange"
+                  class="pl-4 pr-10 py-2 border rounded-button bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm appearance-none"
+                >
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>Last 90 days</option>
+                  <option>This year</option>
+                  <option>Custom range</option>
+                </select>
+                <i
+                  class="ri-arrow-down-s-line absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+                ></i>
+              </div>
+              <button
+                onclick="exportReport()"
+                class="px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer"
+              >
+                <i class="ri-download-line mr-2"></i>Export Report
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          >
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full"
+                >
+                  <i class="ri-money-dollar-circle-line text-primary"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm text-gray-600">Total Revenue</p>
+                  <p class="text-2xl font-semibold text-gray-900">$24,589.50</p>
+                  <p class="text-sm text-green-600">+12.5% vs last period</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full"
+                >
+                  <i class="ri-shopping-cart-line text-blue-600"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm text-gray-600">Total Orders</p>
+                  <p class="text-2xl font-semibold text-gray-900">1,458</p>
+                  <p class="text-sm text-green-600">+8.2% vs last period</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full"
+                >
+                  <i class="ri-line-chart-line text-green-600"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm text-gray-600">Average Order Value</p>
+                  <p class="text-2xl font-semibold text-gray-900">$168.65</p>
+                  <p class="text-sm text-green-600">+5.8% vs last period</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-full"
+                >
+                  <i class="ri-user-smile-line text-purple-600"></i>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm text-gray-600">Customer Satisfaction</p>
+                  <p class="text-2xl font-semibold text-gray-900">94.8%</p>
+                  <p class="text-sm text-green-600">+2.1% vs last period</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-sm p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="font-medium text-gray-900">Sales Trends</h3>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="updateSalesChart('daily')"
+                    class="px-3 py-1 text-sm bg-primary text-white rounded-full"
+                  >
+                    Daily
+                  </button>
+                  <button
+                    onclick="updateSalesChart('weekly')"
+                    class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-full"
+                  >
+                    Weekly
+                  </button>
+                  <button
+                    onclick="updateSalesChart('monthly')"
+                    class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-full"
+                  >
+                    Monthly
+                  </button>
+                </div>
+              </div>
+              <div id="salesTrendsChart" class="w-full h-[300px]"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <h3 class="font-medium text-gray-900 mb-6">
+                Revenue by Category
+              </h3>
+              <div id="revenueCategoryChart" class="w-full h-[300px]"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="font-medium text-gray-900">Top Products</h3>
+                <button class="text-sm text-primary hover:text-primary/80">
+                  View All
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <img
+                    src="https://public.readdy.ai/ai/img_res/f9a0ac7d082292cb3c6c143d7119791e.jpg"
+                    class="w-12 h-12 rounded object-cover"
+                    alt="Sourdough Bread"
+                  />
+                  <div class="ml-4 flex-1">
+                    <div class="flex justify-between items-start">
+                      <div>
+                        <p class="font-medium text-gray-900">Sourdough Bread</p>
+                        <p class="text-sm text-gray-600">485 sold</p>
+                      </div>
+                      <p class="font-medium text-gray-900">$4,850</p>
+                    </div>
+                    <div class="mt-2 bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-primary rounded-full h-2"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center">
+                  <img
+                    src="https://public.readdy.ai/ai/img_res/450c0ba15d886b10e2f4b50b96fc3587.jpg"
+                    class="w-12 h-12 rounded object-cover"
+                    alt="Chocolate Croissant"
+                  />
+                  <div class="ml-4 flex-1">
+                    <div class="flex justify-between items-start">
+                      <div>
+                        <p class="font-medium text-gray-900">
+                          Chocolate Croissant
+                        </p>
+                        <p class="text-sm text-gray-600">425 sold</p>
+                      </div>
+                      <p class="font-medium text-gray-900">$3,825</p>
+                    </div>
+                    <div class="mt-2 bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-primary rounded-full h-2"
+                        style="width: 75%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center">
+                  <img
+                    src="https://public.readdy.ai/ai/img_res/76328906a4c320c66fd9138c6aee0058.jpg"
+                    class="w-12 h-12 rounded object-cover"
+                    alt="Apple Pie"
+                  />
+                  <div class="ml-4 flex-1">
+                    <div class="flex justify-between items-start">
+                      <div>
+                        <p class="font-medium text-gray-900">Apple Pie</p>
+                        <p class="text-sm text-gray-600">356 sold</p>
+                      </div>
+                      <p class="font-medium text-gray-900">$3,204</p>
+                    </div>
+                    <div class="mt-2 bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-primary rounded-full h-2"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="font-medium text-gray-900">Customer Demographics</h3>
+                <div class="relative">
+                  <select
+                    class="text-sm border rounded-button px-3 py-1 pr-8 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none"
+                  >
+                    <option>Age Group</option>
+                    <option>Location</option>
+                    <option>Purchase Frequency</option>
+                  </select>
+                  <i
+                    class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
+                  ></i>
+                </div>
+              </div>
+              <div
+                id="customerDemographicsChart"
+                class="w-full h-[300px]"
+              ></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <h3 class="font-medium text-gray-900 mb-6">Order Status</h3>
+              <div id="orderStatusChart" class="w-full h-[200px]"></div>
+              <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="text-center">
+                  <p class="text-2xl font-semibold text-gray-900">92.4%</p>
+                  <p class="text-sm text-gray-600">On-time Delivery</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-2xl font-semibold text-gray-900">1.2%</p>
+                  <p class="text-sm text-gray-600">Return Rate</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <h3 class="font-medium text-gray-900 mb-6">Peak Hours</h3>
+              <div id="peakHoursChart" class="w-full h-[200px]"></div>
+              <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="text-center">
+                  <p class="text-2xl font-semibold text-gray-900">10 AM</p>
+                  <p class="text-sm text-gray-600">Busiest Hour</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-2xl font-semibold text-gray-900">3 PM</p>
+                  <p class="text-sm text-gray-600">Quietest Hour</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <h3 class="font-medium text-gray-900 mb-6">Payment Methods</h3>
+              <div id="paymentMethodsChart" class="w-full h-[200px]"></div>
+              <div class="space-y-4 mt-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <i class="ri-bank-card-line mr-2 text-blue-600"></i>
+                    <span class="text-gray-600">Credit Card</span>
+                  </div>
+                  <span class="font-medium text-gray-900">45%</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <i class="ri-alipay-fill mr-2 text-blue-600"></i>
+                    <span class="text-gray-600">Digital Wallet</span>
+                  </div>
+                  <span class="font-medium text-gray-900">35%</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <i
+                      class="ri-money-dollar-circle-line mr-2 text-blue-600"
+                    ></i>
+                    <span class="text-gray-600">Cash</span>
+                  </div>
+                  <span class="font-medium text-gray-900">20%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const salesTrendsChart = echarts.init(
+        document.getElementById("salesTrendsChart")
+      );
+      const revenueCategoryChart = echarts.init(
+        document.getElementById("revenueCategoryChart")
+      );
+      const customerDemographicsChart = echarts.init(
+        document.getElementById("customerDemographicsChart")
+      );
+      const orderStatusChart = echarts.init(
+        document.getElementById("orderStatusChart")
+      );
+      const peakHoursChart = echarts.init(
+        document.getElementById("peakHoursChart")
+      );
+      const paymentMethodsChart = echarts.init(
+        document.getElementById("paymentMethodsChart")
+      );
+      const salesTrendsOption = {
+        animation: false,
+        grid: { top: 20, right: 20, bottom: 40, left: 40 },
+        xAxis: {
+          type: "category",
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          axisLine: { lineStyle: { color: "#E5E7EB" } },
+          axisLabel: { color: "#4B5563" },
+        },
+        yAxis: {
+          type: "value",
+          axisLine: { show: false },
+          axisLabel: { color: "#4B5563" },
+          splitLine: { lineStyle: { color: "#E5E7EB" } },
+        },
+        series: [
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: "line",
+            smooth: true,
+            symbol: "none",
+            lineStyle: { width: 3, color: "rgba(87, 181, 231, 1)" },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: "rgba(87, 181, 231, 0.2)",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(87, 181, 231, 0.05)",
+                },
+              ]),
+            },
+          },
+        ],
+      };
+
+      const revenueCategoryOption = {
+        animation: false,
+        tooltip: {
+          trigger: "item",
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          textStyle: { color: "#1F2937" },
+        },
+        series: [
+          {
+            type: "pie",
+            radius: ["40%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              {
+                value: 45,
+                name: "Bread",
+                itemStyle: { color: "rgba(87, 181, 231, 1)" },
+              },
+              {
+                value: 25,
+                name: "Pastries",
+                itemStyle: { color: "rgba(141, 211, 199, 1)" },
+              },
+              {
+                value: 20,
+                name: "Cakes",
+                itemStyle: { color: "rgba(251, 191, 114, 1)" },
+              },
+              {
+                value: 10,
+                name: "Others",
+                itemStyle: { color: "rgba(252, 141, 98, 1)" },
+              },
+            ],
+          },
+        ],
+      };
+
+      const customerDemographicsOption = {
+        animation: false,
+        grid: { top: 20, right: 20, bottom: 40, left: 40 },
+        xAxis: {
+          type: "category",
+          data: ["18-24", "25-34", "35-44", "45-54", "55+"],
+          axisLine: { lineStyle: { color: "#E5E7EB" } },
+          axisLabel: { color: "#4B5563" },
+        },
+        yAxis: {
+          type: "value",
+          axisLine: { show: false },
+          axisLabel: { color: "#4B5563" },
+          splitLine: { lineStyle: { color: "#E5E7EB" } },
+        },
+        series: [
+          {
+            data: [15, 35, 25, 15, 10],
+            type: "bar",
+            barWidth: "60%",
+            itemStyle: {
+              color: "rgba(87, 181, 231, 1)",
+              borderRadius: [4, 4, 0, 0],
+            },
+          },
+        ],
+      };
+
+      const orderStatusOption = {
+        animation: false,
+        tooltip: {
+          trigger: "item",
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          textStyle: { color: "#1F2937" },
+        },
+        series: [
+          {
+            type: "pie",
+            radius: ["50%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              {
+                value: 75,
+                name: "Completed",
+                itemStyle: { color: "rgba(87, 181, 231, 1)" },
+              },
+              {
+                value: 15,
+                name: "In Progress",
+                itemStyle: { color: "rgba(141, 211, 199, 1)" },
+              },
+              {
+                value: 10,
+                name: "Pending",
+                itemStyle: { color: "rgba(251, 191, 114, 1)" },
+              },
+            ],
+          },
+        ],
+      };
+
+      const peakHoursOption = {
+        animation: false,
+        grid: { top: 20, right: 20, bottom: 40, left: 40 },
+        xAxis: {
+          type: "category",
+          data: ["6AM", "9AM", "12PM", "3PM", "6PM", "9PM"],
+          axisLine: { lineStyle: { color: "#E5E7EB" } },
+          axisLabel: { color: "#4B5563" },
+        },
+        yAxis: {
+          type: "value",
+          axisLine: { show: false },
+          axisLabel: { color: "#4B5563" },
+          splitLine: { lineStyle: { color: "#E5E7EB" } },
+        },
+        series: [
+          {
+            data: [10, 45, 35, 20, 30, 15],
+            type: "bar",
+            barWidth: "60%",
+            itemStyle: {
+              color: "rgba(87, 181, 231, 1)",
+              borderRadius: [4, 4, 0, 0],
+            },
+          },
+        ],
+      };
+
+      const paymentMethodsOption = {
+        animation: false,
+        tooltip: {
+          trigger: "item",
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          textStyle: { color: "#1F2937" },
+        },
+        series: [
+          {
+            type: "pie",
+            radius: ["50%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              {
+                value: 45,
+                name: "Credit Card",
+                itemStyle: { color: "rgba(87, 181, 231, 1)" },
+              },
+              {
+                value: 35,
+                name: "Digital Wallet",
+                itemStyle: { color: "rgba(141, 211, 199, 1)" },
+              },
+              {
+                value: 20,
+                name: "Cash",
+                itemStyle: { color: "rgba(251, 191, 114, 1)" },
+              },
+            ],
+          },
+        ],
+      };
+
+      salesTrendsChart.setOption(salesTrendsOption);
+      revenueCategoryChart.setOption(revenueCategoryOption);
+      customerDemographicsChart.setOption(customerDemographicsOption);
+      orderStatusChart.setOption(orderStatusOption);
+      peakHoursChart.setOption(peakHoursOption);
+      paymentMethodsChart.setOption(paymentMethodsOption);
+      window.addEventListener("resize", () => {
+        salesTrendsChart.resize();
+        revenueCategoryChart.resize();
+        customerDemographicsChart.resize();
+        orderStatusChart.resize();
+        peakHoursChart.resize();
+        paymentMethodsChart.resize();
+      });
+
+      function updateSalesChart(period) {
+        const data = {
+          daily: [820, 932, 901, 934, 1290, 1330, 1320],
+          weekly: [4500, 5200, 4800, 5100, 5600, 5400, 5800],
+          monthly: [15000, 16800, 16200, 17500, 18200, 19100, 19500],
+        };
+        salesTrendsOption.series[0].data = data[period];
+        salesTrendsChart.setOption(salesTrendsOption);
+      }
+
+      function exportReport() {
+        const exportModal = document.createElement("div");
+        exportModal.className =
+          "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+        exportModal.innerHTML = `
+<div class="bg-white rounded-lg w-full max-w-md mx-4">
+<div class="p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Export Report</h3>
+<div class="space-y-4">
+<button class="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-button flex items-center">
+<i class="ri-file-pdf-line mr-2 text-red-600"></i>
+Export as PDF
+</button>
+<button class="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-button flex items-center">
+<i class="ri-file-excel-line mr-2 text-green-600"></i>
+Export as Excel
+</button>
+<button class="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-button flex items-center">
+<i class="ri-file-text-line mr-2 text-blue-600"></i>
+Export as CSV
+</button>
+</div>
+<div class="mt-6 flex justify-end">
+<button onclick="this.closest('.fixed').remove()" class="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-button">Cancel</button>
+</div>
+</div>
+</div>
+`;
+        document.body.appendChild(exportModal);
+      }
+    </script>
+  </body>
+</html>
