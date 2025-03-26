@@ -1,642 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bakery Admin - Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#854d0e",
-              secondary: "#fef3c7",
-            },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
-            },
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bakery Admin - Order Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#854d0e',
+            secondary: '#fef3c7'
           },
-        },
-      };
-    </script>
-    <style>
-      :where([class^="ri-"])::before {
-        content: "\f3c2";
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          }
+        }
       }
-      .chart-container {
-        width: 100%;
-        height: 300px;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50 min-h-screen">
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <span class="text-2xl font-['Pacifico'] text-primary">logo</span>
-          </div>
-          <div class="hidden md:flex items-center space-x-8">
-            <a
-              href="dashboard.html"
-              class="text-primary border-b-2 border-primary"
-              >Dashboard</a
-            >
-            <a
-              href="orders.html"
-              data-readdy="true"
-              class="text-gray-700 hover:text-primary"
-              >Orders</a
-            >
-            <a href="products.html" class="text-gray-700 hover:text-primary"
-              >Products</a
-            >
-            <a href="customers.html" class="text-gray-700 hover:text-primary"
-              >Customers</a
-            >
-            <a href="reports.html" class="text-gray-700 hover:text-primary"
-              >Reports</a
-            >
-          </div>
-          <div class="flex items-center space-x-4">
-            <button class="w-10 h-10 flex items-center justify-center">
-              <i class="ri-notification-3-line text-gray-600"></i>
-            </button>
-            <button class="w-10 h-10 flex items-center justify-center">
-              <i class="ri-user-line text-gray-600"></i>
+    }
+  </script>
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 300px;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <span class="text-2xl font-['Pacifico'] text-primary">logo</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="dashboard.html" class="text-primary border-b-2 border-primary">Dashboard</a>
+          <!-- <a href="orders.html" data-readdy="true" class="text-gray-700 hover:text-primary">Orders</a> -->
+          <a href="products.html" class="text-gray-700 hover:text-primary">Products</a>
+          <a href="customers.html" class="text-gray-700 hover:text-primary">Customers</a>
+          <a href="reports.html" class="text-gray-700 hover:text-primary">Reports</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="w-10 h-10 flex items-center justify-center">
+            <i class="ri-notification-3-line text-gray-600"></i>
+          </button>
+          <button class="w-10 h-10 flex items-center justify-center">
+            <i class="ri-user-line text-gray-600"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+          <div class="flex space-x-4">
+            <!-- <div class="relative">
+              <input type="text" placeholder="Search orders..."
+                class="pl-10 pr-4 py-2 border rounded-button bg-white focus:outline-none focus:ring-2 focus:ring-primary/20">
+              <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div> -->
+            <button
+              class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 !rounded-button whitespace-nowrap cursor-pointer">
+              <i class="ri-add-line mr-2"></i>New Order
             </button>
           </div>
         </div>
-      </div>
-    </nav>
-
-    <main class="pt-16 pb-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="py-8">
-          <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-semibold text-gray-900">
-              Dashboard Overview
-            </h1>
-            <div class="flex space-x-4">
-              <div class="relative">
-                <select
-                  id="dateRange"
-                  class="pl-4 pr-10 py-2 border rounded-button bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer"
-                >
-                  <option value="today">Today</option>
-                  <option value="week">This Week</option>
-                  <option value="month">This Month</option>
-                </select>
-                <i
-                  class="ri-arrow-down-s-line absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
-                ></i>
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-8">
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="flex items-center">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full">
+                <i class="ri-shopping-bag-line text-primary"></i>
               </div>
-              <button
-                class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 !rounded-button whitespace-nowrap cursor-pointer"
-              >
-                <i class="ri-download-line mr-2"></i>Export Report
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
-          >
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full"
-                >
-                  <i class="ri-money-dollar-circle-line text-primary"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm text-gray-600">Total Revenue</p>
-                  <p class="text-2xl font-semibold text-gray-900">$28,426</p>
-                  <p class="text-sm text-green-600 flex items-center">
-                    <i class="ri-arrow-up-s-line mr-1"></i>+12.5%
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full"
-                >
-                  <i class="ri-shopping-bag-line text-blue-600"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm text-gray-600">Total Orders</p>
-                  <p class="text-2xl font-semibold text-gray-900">1,243</p>
-                  <p class="text-sm text-green-600 flex items-center">
-                    <i class="ri-arrow-up-s-line mr-1"></i>+8.3%
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full"
-                >
-                  <i class="ri-user-line text-green-600"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm text-gray-600">Active Customers</p>
-                  <p class="text-2xl font-semibold text-gray-900">856</p>
-                  <p class="text-sm text-green-600 flex items-center">
-                    <i class="ri-arrow-up-s-line mr-1"></i>+5.2%
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-yellow-100 rounded-full"
-                >
-                  <i class="ri-star-line text-yellow-600"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm text-gray-600">Avg. Rating</p>
-                  <p class="text-2xl font-semibold text-gray-900">4.8</p>
-                  <p class="text-sm text-gray-600">from 2.4k reviews</p>
-                </div>
+              <div class="ml-2">
+                <p class="text-sm text-gray-600">Total Orders</p>
+                <p class="text-xl font-semibold text-gray-900">2,451</p>
               </div>
             </div>
           </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div class="lg:col-span-2 bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Sales Trends
-                </h2>
-                <div id="salesChart" class="chart-container"></div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="flex items-center">
+              <div class="w-12 h-12 flex items-center justify-center bg-yellow-100 rounded-full">
+                <i class="ri-time-line text-yellow-600"></i>
               </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Top Products
-                </h2>
-                <div id="productsChart" class="chart-container"></div>
+              <div class="ml-2">
+                <p class="text-sm text-gray-600">Pending Orders</p>
+                <p class="text-xl font-semibold text-gray-900">156</p>
               </div>
             </div>
           </div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="flex items-center">
+              <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full">
+                <i class="ri-check-line text-green-600"></i>
+              </div>
+              <div class="ml-2">
+                <p class="text-sm text-gray-600">Completed Orders</p>
+                <p class="text-xl font-semibold text-gray-900">2,295</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="flex items-center">
+              <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full">
+                <i class="ri-money-dollar-circle-line text-blue-600"></i>
+              </div>
+              <div class="ml-2">
+                <p class="text-sm text-gray-600">Revenue Today</p>
+                <p class="text-xl font-semibold text-gray-900">$3,842</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm mb-8">
+          <!-- <div class="p-6"> -->
+            <!-- <h2 class="text-lg font-semibold text-gray-900 mb-4">Sales Overview</h2> -->
+            <!-- <div id="\" class="chart-container"></div> -->
+          <!-- </div> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-sm">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-lg font-semibold text-gray-900">Recent Orders</h2>
+              <!-- <div class="flex space-x-2">
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer">
+                  <i class="ri-filter-3-line mr-1"></i>Filter
+                </button>
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer">
+                  <i class="ri-download-line mr-1"></i>Export
+                </button>
+              </div> -->
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b">
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Order ID</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Customer</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Mobile No.</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Products</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Pro. Img</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Amt</th>
+                    <th class="text-left py-4 px-4 font-medium text-gray-600">Status</th>
+                    <th class="text-right py-4 px-4 font-medium text-gray-600">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-4 px-4">1</td>
+                    <td class="py-4 px-4">Sarah Williams</td>
+                    <td class="py-4 px-4">9876543211</td>
+                    <td class="py-4 px-4">Birthday Cake × 1</td>
+                    <td class="py-4 px-4"><img src="../img/about-2.jpg" alt="Product" width="75px" height="60px" style="object-fit: cover;"></td>
+                    <td class="py-4 px-4">$65.00</td>
+                    <td class="py-4 px-4">
+                      <span
+                        class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Processing</span>
+                    </td>
+                   
+                    <td class="py-4 px-4 text-right">
+                      <div class="flex gap-3 justify-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                        </svg>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Recent Orders
-                </h2>
-                <div class="overflow-x-auto">
-                  <table class="w-full">
-                    <thead>
-                      <tr class="border-b">
-                        <th
-                          class="text-left py-3 px-4 font-medium text-gray-600"
-                        >
-                          Order ID
-                        </th>
-                        <th
-                          class="text-left py-3 px-4 font-medium text-gray-600"
-                        >
-                          Customer
-                        </th>
-                        <th
-                          class="text-left py-3 px-4 font-medium text-gray-600"
-                        >
-                          Status
-                        </th>
-                        <th
-                          class="text-right py-3 px-4 font-medium text-gray-600"
-                        >
-                          Amount
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">#ORD-7829</td>
-                        <td class="py-3 px-4">Emily Thompson</td>
-                        <td class="py-3 px-4">
-                          <span
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                        </svg>
+                      </div>
+                      <!-- <button class="text-gray-600 hover:text-primary">
+                        <i class="ri-more-2-fill"></i>
+                      </button> -->
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-4 px-4">2</td>
+                    <td class="py-4 px-4">Sarah Williams</td>
+                    <td class="py-4 px-4">9876543211</td>
+                    <td class="py-4 px-4">Birthday Cake × 1</td>
+                    <td class="py-4 px-4"><img src="../img/about-2.jpg" alt="Product" width="75px" height="60px" style="object-fit: cover;"></td>
+                    <td class="py-4 px-4">$65.00</td>
+                    <td class="py-4 px-4">
+                      <span
                             class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full"
                             >Pending</span
                           >
-                        </td>
-                        <td class="py-3 px-4 text-right">$42.50</td>
-                      </tr>
-                      <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">#ORD-7828</td>
-                        <td class="py-3 px-4">Michael Anderson</td>
-                        <td class="py-3 px-4">
-                          <span
+                    </td>
+                   
+                    <td class="py-4 px-4 text-right">
+                      <div class="flex gap-3 justify-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                        </svg>
+                      </div>
+                      <!-- <button class="text-gray-600 hover:text-primary">
+                        <i class="ri-more-2-fill"></i>
+                      </button> -->
+                    </td>
+                  </tr>
+
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-4 px-4">3</td>
+                    <td class="py-4 px-4">Sarah Williams</td>
+                    <td class="py-4 px-4">9876543211</td>
+                    <td class="py-4 px-4">Birthday Cake × 1</td>
+                    <td class="py-4 px-4"><img src="../img/about-2.jpg" alt="Product" width="75px" height="60px" style="object-fit: cover;"></td>
+                    <td class="py-4 px-4">$65.00</td>
+                    <td class="py-4 px-4">
+                      <span
                             class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full"
                             >Completed</span
                           >
-                        </td>
-                        <td class="py-3 px-4 text-right">$28.75</td>
-                      </tr>
-                      <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">#ORD-7827</td>
-                        <td class="py-3 px-4">Sarah Williams</td>
-                        <td class="py-3 px-4">
-                          <span
-                            class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full"
-                            >Processing</span
-                          >
-                        </td>
-                        <td class="py-3 px-4 text-right">$65.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+                    </td>
+                   
+                    <td class="py-4 px-4 text-right">
+                      <div class="flex gap-3 justify-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                        </svg>
 
-            <div class="bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Customer Demographics
-                </h2>
-                <div id="demographicsChart" class="chart-container"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Inventory Alerts
-                </h2>
-                <div class="space-y-4">
-                  <div
-                    class="flex items-center justify-between p-4 bg-red-50 rounded-lg"
-                  >
-                    <div class="flex items-center">
-                      <i class="ri-error-warning-line text-red-600 text-xl"></i>
-                      <div class="ml-4">
-                        <p class="font-medium text-gray-900">
-                          Chocolate Croissant
-                        </p>
-                        <p class="text-sm text-gray-600">
-                          Stock running low (5 remaining)
-                        </p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                        </svg>
                       </div>
-                    </div>
-                    <button
-                      class="px-3 py-1 text-sm bg-red-600 text-white rounded-button hover:bg-red-700 !rounded-button whitespace-nowrap cursor-pointer"
-                    >
-                      Restock
-                    </button>
-                  </div>
-                  <div
-                    class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg"
-                  >
-                    <div class="flex items-center">
-                      <i
-                        class="ri-error-warning-line text-yellow-600 text-xl"
-                      ></i>
-                      <div class="ml-4">
-                        <p class="font-medium text-gray-900">Sourdough Bread</p>
-                        <p class="text-sm text-gray-600">
-                          Stock moderate (15 remaining)
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      class="px-3 py-1 text-sm bg-yellow-600 text-white rounded-button hover:bg-yellow-700 !rounded-button whitespace-nowrap cursor-pointer"
-                    >
-                      Monitor
-                    </button>
-                  </div>
-                </div>
-              </div>
+                      <!-- <button class="text-gray-600 hover:text-primary">
+                        <i class="ri-more-2-fill"></i>
+                      </button> -->
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
             </div>
-
-            <div class="bg-white rounded-lg shadow-sm">
-              <div class="p-6">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">
-                  Quick Actions
-                </h2>
-                <div class="grid grid-cols-2 gap-4">
-                  <button
-                    class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left cursor-pointer"
-                  >
-                    <i
-                      class="ri-add-circle-line text-primary text-2xl mb-2"
-                    ></i>
-                    <p class="font-medium text-gray-900">Create Order</p>
-                    <p class="text-sm text-gray-600">
-                      Add a new customer order
-                    </p>
-                  </button>
-                  <button
-                    class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left cursor-pointer"
-                  >
-                    <i
-                      class="ri-product-hunt-line text-primary text-2xl mb-2"
-                    ></i>
-                    <p class="font-medium text-gray-900">Add Product</p>
-                    <p class="text-sm text-gray-600">
-                      Create new product listing
-                    </p>
-                  </button>
-                  <button
-                    class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left cursor-pointer"
-                  >
-                    <i class="ri-user-add-line text-primary text-2xl mb-2"></i>
-                    <p class="font-medium text-gray-900">Add Customer</p>
-                    <p class="text-sm text-gray-600">Register new customer</p>
-                  </button>
-                  <button
-                    class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left cursor-pointer"
-                  >
-                    <i
-                      class="ri-file-chart-line text-primary text-2xl mb-2"
-                    ></i>
-                    <p class="font-medium text-gray-900">Generate Report</p>
-                    <p class="text-sm text-gray-600">Create sales report</p>
-                  </button>
-                </div>
+            <div class="flex justify-between items-center flex-wrap mt-6 gap-7">
+              <p class="text-sm text-gray-600">Showing 1 to 3 of 2,451 entries</p>
+              <div class="flex space-x-2">
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed !rounded-button whitespace-nowrap cursor-pointer"
+                  disabled>Previous</button>
+                <button
+                  class="px-3 py-1 text-sm bg-primary text-white rounded-button hover:bg-primary/90 !rounded-button whitespace-nowrap cursor-pointer">1</button>
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer">2</button>
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer">3</button>
+                <button
+                  class="px-3 py-1 text-sm border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer">Next</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script>
-      const salesData = {
-        dates: [
-          "Mar 6",
-          "Mar 7",
-          "Mar 8",
-          "Mar 9",
-          "Mar 10",
-          "Mar 11",
-          "Mar 12",
-        ],
-        revenue: [3200, 3800, 3100, 4200, 3600, 3900, 4100],
-        orders: [145, 156, 132, 178, 156, 167, 182],
-      };
 
-      const salesChart = echarts.init(document.getElementById("salesChart"));
-      salesChart.setOption({
-        animation: false,
-        tooltip: {
-          trigger: "axis",
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
-          borderColor: "#e5e7eb",
-          borderWidth: 1,
-          textStyle: { color: "#1f2937" },
-        },
-        legend: {
-          data: ["Revenue", "Orders"],
-          bottom: 0,
-        },
-        grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "15%",
-          top: "3%",
-          containLabel: true,
-        },
-        xAxis: {
-          type: "category",
-          data: salesData.dates,
-          axisLine: { lineStyle: { color: "#e5e7eb" } },
-          axisLabel: { color: "#6b7280" },
-        },
-        yAxis: [
-          {
-            type: "value",
-            name: "Revenue",
-            axisLabel: {
-              formatter: "${value}",
-              color: "#6b7280",
-            },
-            splitLine: { lineStyle: { color: "#e5e7eb" } },
-          },
-          {
-            type: "value",
-            name: "Orders",
-            splitLine: { show: false },
-          },
-        ],
-        series: [
-          {
-            name: "Revenue",
-            type: "line",
-            smooth: true,
-            data: salesData.revenue,
-            symbol: "none",
-            itemStyle: { color: "rgba(87, 181, 231, 1)" },
-            areaStyle: {
-              color: {
-                type: "linear",
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: "rgba(87, 181, 231, 0.2)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(87, 181, 231, 0)",
-                  },
-                ],
-              },
-            },
-          },
-          {
-            name: "Orders",
-            type: "line",
-            smooth: true,
-            yAxisIndex: 1,
-            data: salesData.orders,
-            symbol: "none",
-            itemStyle: { color: "rgba(141, 211, 199, 1)" },
-            areaStyle: {
-              color: {
-                type: "linear",
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: "rgba(141, 211, 199, 0.2)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(141, 211, 199, 0)",
-                  },
-                ],
-              },
-            },
-          },
-        ],
+  <div id="newOrderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg w-full max-w-2xl mx-4">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-semibold text-gray-900">Create New Order</h3>
+          <button class="text-gray-400 hover:text-gray-500" onclick="closeNewOrderModal()">
+            <i class="ri-close-line text-xl"></i>
+          </button>
+        </div>
+        <form id="newOrderForm" class="space-y-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
+              <input type="text" id="customerName" required
+                class="w-full px-3 py-2 border rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number *</label>
+              <input type="tel" id="contactNumber" required
+                class="w-full px-3 py-2 border rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Products *</label>
+            <div id="productList" class="space-y-3">
+              <div class="flex items-center space-x-4">
+                <select
+                  class="product-select flex-1 px-3 py-2 border rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20">
+                  <option value="">Select a product</option>
+                  <option value="chocolate_croissant" data-price="4.50">Chocolate Croissant ($4.50)</option>
+                  <option value="danish_pastry" data-price="3.75">Danish Pastry ($3.75)</option>
+                  <option value="sourdough_bread" data-price="6.00">Sourdough Bread ($6.00)</option>
+                  <option value="blueberry_muffin" data-price="3.00">Blueberry Muffin ($3.00)</option>
+                </select>
+                <input type="number" min="1" value="1"
+                  class="product-quantity w-20 px-3 py-2 border rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20">
+                <button type="button" class="text-red-500 hover:text-red-600" onclick="removeProduct(this)">
+                  <i class="ri-delete-bin-line"></i>
+                </button>
+              </div>
+            </div>
+            <button type="button" onclick="addProduct()" class="mt-2 text-sm text-primary hover:text-primary/80">
+              <i class="ri-add-line"></i> Add Another Product
+            </button>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Order Notes</label>
+            <textarea id="orderNotes" rows="3"
+              class="w-full px-3 py-2 border rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20"></textarea>
+          </div>
+          <div class="border-t pt-4">
+            <div class="flex justify-between mb-2">
+              <p class="text-gray-600">Subtotal</p>
+              <p class="font-medium text-gray-900">$<span id="subtotal">0.00</span></p>
+            </div>
+            <div class="flex justify-between mb-2">
+              <p class="text-gray-600">Tax (8%)</p>
+              <p class="font-medium text-gray-900">$<span id="tax">0.00</span></p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-gray-900 font-medium">Total</p>
+              <p class="font-semibold text-gray-900">$<span id="total">0.00</span></p>
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button"
+              class="px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer"
+              onclick="closeNewOrderModal()">Cancel</button>
+            <button type="submit"
+              class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 !rounded-button whitespace-nowrap cursor-pointer">Create
+              Order</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="p-6 bg-white rounded-lg w-full max-w-7xl mx-auto mx-4 mb-10 ">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-lg font-semibold text-gray-900">Order Details</h3>
+      <button class="text-gray-400 hover:text-gray-500" onclick="closeOrderModal()">
+        <i class="ri-close-line text-xl"></i>
+      </button>
+    </div>
+    <div class="space-y-6">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p class="text-sm text-gray-600">Order ID</p>
+          <p class="font-medium text-gray-900">7829</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">Date</p>
+          <p class="font-medium text-gray-900">Mar 12, 2025</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">Customer</p>
+          <p class="font-medium text-gray-900">Emily Thompson</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">Contact</p>
+          <p class="font-medium text-gray-900">+1 234 567 890</p>
+        </div>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600 mb-2">Items</p>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <img src="https://public.readdy.ai/ai/img_res/3e23086adc61ac956323c911f24b5cdd.jpg"
+                class="w-12 h-12 rounded object-cover" alt="Chocolate Croissant">
+              <div class="ml-4">
+                <p class="font-medium text-gray-900">Chocolate Croissant</p>
+                <p class="text-sm text-gray-600">$4.50 × 2</p>
+              </div>
+            </div>
+            <p class="font-medium text-gray-900">$9.00</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <img src="https://public.readdy.ai/ai/img_res/d80138079fc43cbbf2c91de5658b9bc9.jpg"
+                class="w-12 h-12 rounded object-cover" alt="Danish Pastry">
+              <div class="ml-4">
+                <p class="font-medium text-gray-900">Danish Pastry</p>
+                <p class="text-sm text-gray-600">$3.75 × 3</p>
+              </div>
+            </div>
+            <p class="font-medium text-gray-900">$11.25</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t pt-4">
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-600">Subtotal</p>
+          <p class="font-medium text-gray-900">$20.25</p>
+        </div>
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-600">Tax</p>
+          <p class="font-medium text-gray-900">$1.62</p>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-gray-900 font-medium">Total</p>
+          <p class="font-semibold text-gray-900">$21.87</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 flex justify-end space-x-3">
+      <button
+        class="px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap cursor-pointer"
+        onclick="closeOrderModal()">Close</button>
+      <button
+        class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 !rounded-button whitespace-nowrap cursor-pointer">Update
+        Status</button>
+    </div>
+
+  
+  
+  <script>
+    // const mockData = {
+    //   dates: ['Mar 6', 'Mar 7', 'Mar 8', 'Mar 9', 'Mar 10', 'Mar 11', 'Mar 12'],
+    //   orders: [125, 132, 101, 134, 90, 130, 120],
+    //   revenue: [2890, 3100, 2750, 3400, 2100, 3000, 2800]
+    // };
+    // const chartDom = document.getElementById('salesChart');
+    // const myChart = echarts.init(chartDom);
+    // const option = {
+    //   animation: false,
+    //   tooltip: {
+    //     trigger: 'axis',
+    //     backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    //     borderColor: '#e5e7eb',
+    //     borderWidth: 1,
+    //     textStyle: {
+    //       color: '#1f2937'
+    //     }
+    //   },
+    //   legend: {
+    //     data: ['Orders', 'Revenue'],
+    //     bottom: 0
+    //   },
+    //   grid: {
+    //     left: '3%',
+    //     right: '4%',
+    //     bottom: '10%',
+    //     top: '3%',
+    //     containLabel: true
+    //   },
+    //   xAxis: {
+    //     type: 'category',
+    //     boundaryGap: false,
+    //     data: mockData.dates,
+    //     axisLine: {
+    //       lineStyle: {
+    //         color: '#e5e7eb'
+    //       }
+    //     },
+    //     axisLabel: {
+    //       color: '#6b7280'
+    //     }
+    //   },
+    //   yAxis: [
+    //     {
+    //       type: 'value',
+    //       name: 'Orders',
+    //       axisLine: {
+    //         show: false
+    //       },
+    //       axisLabel: {
+    //         color: '#6b7280'
+    //       },
+    //       splitLine: {
+    //         lineStyle: {
+    //           color: '#e5e7eb'
+    //         }
+    //       }
+    //     },
+    //     {
+    //       type: 'value',
+    //       name: 'Revenue',
+    //       axisLine: {
+    //         show: false
+    //       },
+    //       axisLabel: {
+    //         color: '#6b7280',
+    //         formatter: '${value}'
+    //       },
+    //       splitLine: {
+    //         show: false
+    //       }
+    //     }
+    //   ],
+    //   series: [
+    //     {
+    //       name: 'Orders',
+    //       type: 'line',
+    //       smooth: true,
+    //       data: mockData.orders,
+    //       symbol: 'none',
+    //       itemStyle: {
+    //         color: 'rgba(87, 181, 231, 1)'
+    //       },
+    //       areaStyle: {
+    //         color: {
+    //           type: 'linear',
+    //           x: 0,
+    //           y: 0,
+    //           x2: 0,
+    //           y2: 1,
+    //           colorStops: [{
+    //             offset: 0,
+    //             color: 'rgba(87, 181, 231, 0.2)'
+    //           }, {
+    //             offset: 1,
+    //             color: 'rgba(87, 181, 231, 0)'
+    //           }]
+    //         }
+    //       }
+    //     },
+    //     {
+    //       name: 'Revenue',
+    //       type: 'line',
+    //       smooth: true,
+    //       yAxisIndex: 1,
+    //       data: mockData.revenue,
+    //       symbol: 'none',
+    //       itemStyle: {
+    //         color: 'rgba(141, 211, 199, 1)'
+    //       },
+    //       areaStyle: {
+    //         color: {
+    //           type: 'linear',
+    //           x: 0,
+    //           y: 0,
+    //           x2: 0,
+    //           y2: 1,
+    //           colorStops: [{
+    //             offset: 0,
+    //             color: 'rgba(141, 211, 199, 0.2)'
+    //           }, {
+    //             offset: 1,
+    //             color: 'rgba(141, 211, 199, 0)'
+    //           }]
+    //         }
+    //       }
+    //     }
+    //   ]
+    // };
+    // myChart.setOption(option);
+
+
+    // window.addEventListener('resize', () => {
+    //   myChart.resize();
+    // });
+
+
+    function showOrderModal() {
+      document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').style.display = 'none';
+    }
+
+    function showNewOrderModal() {
+      document.getElementById('newOrderModal').style.display = 'flex';
+    }
+
+    function closeNewOrderModal() {
+      document.getElementById('newOrderModal').style.display = 'none';
+      document.getElementById('newOrderForm').reset();
+      updateTotals();
+    }
+
+    function addProduct() {
+      const productList = document.getElementById('productList');
+      const newProduct = productList.children[0].cloneNode(true);
+      newProduct.querySelector('select').value = '';
+      newProduct.querySelector('input').value = 1;
+      productList.appendChild(newProduct);
+    }
+    function removeProduct(button) {
+      const productList = document.getElementById('productList');
+      if (productList.children.length > 1) {
+        button.closest('.flex').remove();
+        updateTotals();
+      }
+    }
+    function updateTotals() {
+      let subtotal = 0;
+      document.querySelectorAll('#productList .flex').forEach(product => {
+        const select = product.querySelector('select');
+        const quantity = parseInt(product.querySelector('input').value);
+        const price = select.options[select.selectedIndex].dataset.price;
+        if (price) {
+          subtotal += price * quantity;
+        }
       });
+      const tax = subtotal * 0.08;
+      const total = subtotal + tax;
+      document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+      document.getElementById('tax').textContent = tax.toFixed(2);
+      document.getElementById('total').textContent = total.toFixed(2);
+    }
+    
+    document.querySelectorAll('tr.hover\\:bg-gray-50').forEach(row => {
+      row.addEventListener('click', showOrderModal);
+    });
 
-      const productsChart = echarts.init(
-        document.getElementById("productsChart")
-      );
-      productsChart.setOption({
-        animation: false,
-        tooltip: {
-          trigger: "item",
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
-          borderColor: "#e5e7eb",
-          borderWidth: 1,
-          textStyle: { color: "#1f2937" },
-        },
-        series: [
-          {
-            type: "pie",
-            radius: ["40%", "70%"],
-            avoidLabelOverlap: false,
-            itemStyle: {
-              borderRadius: 6,
-              borderColor: "#fff",
-              borderWidth: 2,
-            },
-            label: {
-              show: false,
-            },
-            emphasis: {
-              label: {
-                show: true,
-                formatter: "{b}\n{d}%",
-              },
-            },
-            labelLine: {
-              show: false,
-            },
-            data: [
-              {
-                value: 1048,
-                name: "Croissants",
-                itemStyle: { color: "rgba(87, 181, 231, 1)" },
-              },
-              {
-                value: 735,
-                name: "Bread",
-                itemStyle: { color: "rgba(141, 211, 199, 1)" },
-              },
-              {
-                value: 580,
-                name: "Cakes",
-                itemStyle: { color: "rgba(251, 191, 114, 1)" },
-              },
-              {
-                value: 484,
-                name: "Pastries",
-                itemStyle: { color: "rgba(252, 141, 98, 1)" },
-              },
-            ],
-          },
-        ],
-      });
+    document.querySelector('button:has(.ri-add-line)').addEventListener('click', showNewOrderModal);
+    document.addEventListener('change', function (e) {
+      if (e.target.matches('.product-select') || e.target.matches('.product-quantity')) {
+        updateTotals();
+      }
+    });
+    // Add toast notification container
+    const toastContainer = document.createElement('div');
+    toastContainer.className = 'fixed bottom-4 right-4 z-50';
+    document.body.appendChild(toastContainer);
 
-      const demographicsChart = echarts.init(
-        document.getElementById("demographicsChart")
-      );
-      demographicsChart.setOption({
-        animation: false,
-        tooltip: {
-          trigger: "item",
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
-          borderColor: "#e5e7eb",
-          borderWidth: 1,
-          textStyle: { color: "#1f2937" },
-        },
-        series: [
-          {
-            type: "pie",
-            radius: "70%",
-            center: ["50%", "50%"],
-            data: [
-              {
-                value: 40,
-                name: "25-34",
-                itemStyle: { color: "rgba(87, 181, 231, 1)" },
-              },
-              {
-                value: 30,
-                name: "35-44",
-                itemStyle: { color: "rgba(141, 211, 199, 1)" },
-              },
-              {
-                value: 20,
-                name: "18-24",
-                itemStyle: { color: "rgba(251, 191, 114, 1)" },
-              },
-              {
-                value: 10,
-                name: "45+",
-                itemStyle: { color: "rgba(252, 141, 98, 1)" },
-              },
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
-            label: {
-              position: "outer",
-              alignTo: "none",
-              bleedMargin: 5,
-            },
-            labelLine: {
-              length: 15,
-              length2: 0,
-              maxSurfaceAngle: 80,
-            },
-          },
-        ],
-      });
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `mb-4 p-4 rounded-lg flex items-center ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+      toast.innerHTML = `
+    <i class="${type === 'success' ? 'ri-check-line' : 'ri-error-warning-line'} mr-2"></i>
+    <span>${message}</span>
+  `;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
 
-      window.addEventListener("resize", () => {
-        salesChart.resize();
-        productsChart.resize();
-        demographicsChart.resize();
-      });
-    </script>
-  </body>
+    document.getElementById('newOrderForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Validate required fields
+      const customerName = document.getElementById('customerName');
+      const contactNumber = document.getElementById('contactNumber');
+      const products = document.querySelectorAll('#productList .flex');
+
+      if (!customerName.value.trim()) {
+        customerName.focus();
+        showToast('Please enter customer name', 'error');
+        return;
+      }
+
+      if (!contactNumber.value.trim()) {
+        contactNumber.focus();
+        showToast('Please enter contact number', 'error');
+        return;
+      }
+
+      let hasValidProduct = false;
+      for (const product of products) {
+        const select = product.querySelector('select');
+        const quantity = product.querySelector('input').value;
+        if (select.value && quantity > 0) {
+          hasValidProduct = true;
+          break;
+        }
+      }
+
+      if (!hasValidProduct) {
+        showToast('Please select at least one product', 'error');
+        return;
+      }
+
+      // Show loading state
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = `
+    <i class="ri-loader-4-line animate-spin mr-2"></i>
+    Processing...
+  `;
+
+      try {
+        const formData = {
+          customerName: customerName.value,
+          contactNumber: contactNumber.value,
+          products: Array.from(products).map(product => ({
+            name: product.querySelector('select').options[product.querySelector('select').selectedIndex].text,
+            quantity: product.querySelector('input').value
+          })),
+          notes: document.getElementById('orderNotes').value,
+          total: document.getElementById('total').textContent
+        };
+
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Add new order to table
+        const tbody = document.querySelector('tbody');
+        const newRow = document.createElement('tr');
+        newRow.className = 'border-b hover:bg-gray-50';
+        newRow.innerHTML = `
+      <td class="py-4 px-4">${Math.floor(Math.random() * 1000)}</td>
+      <td class="py-4 px-4">${formData.customerName}</td>
+      <td class="py-4 px-4">${formData.products.map(p => `${p.name} × ${p.quantity}`).join(', ')}</td>
+      <td class="py-4 px-4">$${formData.total}</td>
+      <td class="py-4 px-4">
+        <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Pending</span>
+      </td>
+      <td class="py-4 px-4">Mar 12, 2025</td>
+      <td class="py-4 px-4 text-right">
+        <button class="text-gray-600 hover:text-primary">
+          <i class="ri-more-2-fill"></i>
+        </button>
+      </td>
+    `;
+        tbody.insertBefore(newRow, tbody.firstChild);
+
+        showToast('Order created successfully');
+        closeNewOrderModal();
+        this.reset();
+        updateTotals();
+
+      } catch (error) {
+        showToast('Failed to create order', 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeOrderModal();
+      }
+    });
+  </script>
+
+
+<div class="relative md:inline-flex lg:hidden" >
+  <div class="fixed bottom-4 bg-sky-50 shadow-md z-75 py-4 inset-x-0 bottom-0 h-16">
+    <ul class="flex justify-evenly">
+      <li><div class="flex flex-col items-center justify-center "><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+      </svg></span><!--<span>Home</span>--></div></li>
+      <li><div class="flex flex-col items-center justify-center "><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cake" viewBox="0 0 16 16">
+        <path d="m7.994.013-.595.79a.747.747 0 0 0 .101 1.01V4H5a2 2 0 0 0-2 2v3H2a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a2 2 0 0 0-2-2h-1V6a2 2 0 0 0-2-2H8.5V1.806A.747.747 0 0 0 8.592.802zM4 6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v.414a.9.9 0 0 1-.646-.268 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0A.9.9 0 0 1 4 6.414zm0 1.414c.49 0 .98-.187 1.354-.56a.914.914 0 0 1 1.292 0c.748.747 1.96.747 2.708 0a.914.914 0 0 1 1.292 0c.374.373.864.56 1.354.56V9H4zM1 11a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.793l-.354.354a.914.914 0 0 1-1.293 0 1.914 1.914 0 0 0-2.707 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0L1 11.793zm11.646 1.854a1.915 1.915 0 0 0 2.354.279V15H1v-1.867c.737.452 1.715.36 2.354-.28a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.708 0a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.707 0a.914.914 0 0 1 1.293 0Z"/>
+      </svg></span><!--<span>Product</span>--></div></li>
+      <li class="absolute p-3"><div class="flex flex-col items-center justify-center "><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+      </svg></span><!--<span>Order</span>--></div></li>
+      <li><div class="flex flex-col items-center justify-center "><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+      </svg></span><!--<span>Customer</span>--></div></li>
+      <li><div class="flex flex-col items-center justify-center "><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-richtext" viewBox="0 0 16 16">
+        <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208M5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"/>
+        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
+      </svg></span><!--<span>Report</span>--></div></li>
+    
+    </ul>
+  </div>
+</div>
+
+
+
+</body>
+
 </html>
