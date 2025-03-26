@@ -99,7 +99,7 @@
             <h1 class="text-2xl font-semibold text-gray-900">
               Customer Management
             </h1>
-            <div class="flex space-x-4">
+            <!-- <div class="flex space-x-4">
               <div class="relative">
                 <input
                   type="text"
@@ -116,12 +116,12 @@
               >
                 <i class="ri-download-line mr-2"></i>Export
               </button>
-            </div>
+            </div> -->
           </div>
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+            class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-8"
           >
-            <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="bg-white p-2 rounded-lg shadow-sm">
               <div class="flex items-center">
                 <div
                   class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full"
@@ -134,7 +134,7 @@
                 </div>
               </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="bg-white p-2 rounded-lg shadow-sm">
               <div class="flex items-center">
                 <div
                   class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full"
@@ -147,7 +147,7 @@
                 </div>
               </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="bg-white p-2 rounded-lg shadow-sm">
               <div class="flex items-center">
                 <div
                   class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full"
@@ -161,7 +161,7 @@
                 </div>
               </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="bg-white p-2 rounded-lg shadow-sm">
               <div class="flex items-center">
                 <div
                   class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-full"
@@ -856,5 +856,115 @@
         }
       });
     </script>
+    <div class="relative md:inline-flex lg:hidden">
+      <div class="fixed bottom-0 bg-sky-50 shadow-md z-75 py-4 inset-x-0 h-16">
+        <ul class="flex justify-around">
+          <li>
+            <div class="flex flex-col items-center justify-center">
+              <span>
+                <a href="dashboard.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-house-door"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"
+                    />
+                  </svg>
+                </a> </span
+              ><!--<span>Home</span>-->
+            </div>
+          </li>
+          <li>
+            <div class="flex flex-col items-center justify-center">
+              <span>
+                <a href="products.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-cake"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="m7.994.013-.595.79a.747.747 0 0 0 .101 1.01V4H5a2 2 0 0 0-2 2v3H2a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a2 2 0 0 0-2-2h-1V6a2 2 0 0 0-2-2H8.5V1.806A.747.747 0 0 0 8.592.802zM4 6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v.414a.9.9 0 0 1-.646-.268 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0A.9.9 0 0 1 4 6.414zm0 1.414c.49 0 .98-.187 1.354-.56a.914.914 0 0 1 1.292 0c.748.747 1.96.747 2.708 0a.914.914 0 0 1 1.292 0c.374.373.864.56 1.354.56V9H4zM1 11a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.793l-.354.354a.914.914 0 0 1-1.293 0 1.914 1.914 0 0 0-2.707 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0L1 11.793zm11.646 1.854a1.915 1.915 0 0 0 2.354.279V15H1v-1.867c.737.452 1.715.36 2.354-.28a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.708 0a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.707 0a.914.914 0 0 1 1.293 0Z"
+                    />
+                  </svg>
+                </a> </span
+              ><!--<span>Product</span>-->
+            </div>
+          </li>
+          <li class="absolute p-3 -top-8 bg-sky-50 shadow-md rounded-full">
+            <div class="flex p-2 flex-col items-center justify-center">
+              <button onclick="showNewOrderModal()">
+                <span class="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-bag-heart"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"
+                    />
+                  </svg> </span
+                ><!--<span>Order</span>-->
+              </button>
+            </div>
+          </li>
+          <li>
+            <div class="flex flex-col items-center justify-center">
+              <span>
+                <a href="customers.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-people"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
+                    />
+                  </svg>
+                </a> </span
+              ><!--<span>Customer</span>-->
+            </div>
+          </li>
+          <li>
+            <div class="flex flex-col items-center justify-center">
+              <span>
+                <a href="reports.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-file-richtext"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208M5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"
+                    />
+                    <path
+                      d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"
+                    />
+                  </svg>
+                </a> </span
+              ><!--<span>Report</span>-->
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
